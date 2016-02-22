@@ -1,6 +1,7 @@
 package com.smartfinance;
 
 import java.math.BigDecimal;
+import java.util.Locale;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -141,7 +142,9 @@ public class CountCash extends Application{
 		gridPane.getChildren().add(date);
 		
 		datePicker = new DatePicker();
-//		datePicker.set
+//		http://myjavafx.blogspot.ca/2012/01/javafx-calendar-control.html
+//		datePicker.setLocale(Locale.GERMAN);
+//		datePicker.getCalendarView().setCalendar(new BuddhistCalendar());
 		GridPane.setConstraints(datePicker, 1, ROW_DATE);
 		GridPane.setColumnSpan(datePicker, 3);
 		gridPane.getChildren().add(datePicker);
