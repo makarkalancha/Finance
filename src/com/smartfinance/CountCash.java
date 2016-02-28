@@ -110,6 +110,7 @@ public class CountCash extends Application{
 		
 		super.init();
 		//https://docs.oracle.com/javase/8/docs/technotes/guides/intl/enhancements.8.html
+		//https://docs.oracle.com/javase/tutorial/i18n/locale/extensions.html
 		//CLDR: http://www.unicode.org/reports/tr35/#Calendars
         System.setProperty("java.locale.providers", "HOST");
 		
