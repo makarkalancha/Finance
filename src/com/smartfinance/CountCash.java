@@ -1,7 +1,13 @@
 package com.smartfinance;
 
 import java.math.BigDecimal;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.temporal.TemporalField;
+import java.time.temporal.WeekFields;
+import java.util.Calendar;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -85,6 +91,12 @@ public class CountCash extends Application{
  
 	
 	public static void main(String [] args){
+		
+		
+		
+//		total.setScale(2, BigDecimal.ROUND_HALF_UP);
+//		totalCents.setScale(2, BigDecimal.ROUND_HALF_UP);
+//		totalBills.setScale(2, BigDecimal.ROUND_HALF_UP);
 		Application.launch(args);
 	}
 
@@ -95,11 +107,9 @@ public class CountCash extends Application{
 	@Override
 	public void init() throws Exception {
 		// TODO Auto-generated method stub
-		super.init();
 		
-//		total.setScale(2, BigDecimal.ROUND_HALF_UP);
-//		totalCents.setScale(2, BigDecimal.ROUND_HALF_UP);
-//		totalBills.setScale(2, BigDecimal.ROUND_HALF_UP);
+		super.init();
+        System.setProperty("java.locale.providers", "HOST");
 		
 	}
 	
@@ -141,10 +151,44 @@ public class CountCash extends Application{
 		GridPane.setConstraints(date, 0, ROW_DATE);
 		gridPane.getChildren().add(date);
 		
+		LocalDate localDate = LocalDate.now();
+		System.out.println(localDate);
+		TemporalField dowField = WeekFields.ISO.dayOfWeek();
+		localDate = localDate.with(dowField, dowField.range().getMinimum());
+		System.out.println(localDate);
+		
+		LocalDate localDate1 = LocalDate.now();
+		System.out.println("localDate1"+localDate1);
+		localDate1 = localDate1.with(DayOfWeek.MONDAY);
+		System.out.println(localDate1);
+//		LocalDate.
+		
 		datePicker = new DatePicker();
 //		http://myjavafx.blogspot.ca/2012/01/javafx-calendar-control.html
 //		datePicker.setLocale(Locale.GERMAN);
 //		datePicker.getCalendarView().setCalendar(new BuddhistCalendar());
+//		Locale myLocale = new Locale.Builder().setLanguage("en").setRegion("FR").build();
+//		Locale myLocale = new Locale("ru");//Monday first
+//        Locale.setDefault(Locale.Category.FORMAT, myLocale); //russian lang, monday
+//        Locale.setDefault(Locale.Category.DISPLAY, Locale.US); //russian lang, monday
+
+//        Locale.setDefault(Locale.Category.FORMAT, Locale.US); //english lang, sunday
+//        Locale.setDefault(Locale.Category.DISPLAY, myLocale);   //english lang, sunday
+
+//        Locale myLocale = new Locale.Builder().setLanguageTag("me-ME-u-ca-gregory").build();
+//        Locale myLocale = new Locale.Builder().setLanguageTag("en-US-u-fw-mon").build();
+//        Locale myLocale = new Locale.Builder().setLanguageTag("me-ME-u-fw-mon").build();
+//        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale.CustomLocale", myLocale);
+//        Locale.setDefault(myLocale);
+        System.out.println(WeekFields.of(Locale.getDefault()).getFirstDayOfWeek());
+		
+		
+		
+//		Calendar cal = Calendar.getInstance(myLocale);
+//		cal.setFirstDayOfWeek(Calendar.MONDAY);
+//		System.out.println(cal.getFirstDayOfWeek());
+		
+		
 		GridPane.setConstraints(datePicker, 1, ROW_DATE);
 		GridPane.setColumnSpan(datePicker, 3);
 		gridPane.getChildren().add(datePicker);
