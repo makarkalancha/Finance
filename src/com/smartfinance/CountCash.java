@@ -109,6 +109,8 @@ public class CountCash extends Application{
 		// TODO Auto-generated method stub
 		
 		super.init();
+		//https://docs.oracle.com/javase/8/docs/technotes/guides/intl/enhancements.8.html
+		//CLDR: http://www.unicode.org/reports/tr35/#Calendars
         System.setProperty("java.locale.providers", "HOST");
 		
 	}
